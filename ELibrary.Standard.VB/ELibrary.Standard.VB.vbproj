@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>ELibrary.Standard.VB</RootNamespace>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Caching\**" />
+    <Compile Remove="MicrosoftOS\**" />
+    <Compile Remove="TimerCore\**" />
+    <EmbeddedResource Remove="Caching\**" />
+    <EmbeddedResource Remove="MicrosoftOS\**" />
+    <EmbeddedResource Remove="TimerCore\**" />
+    <None Remove="Caching\**" />
+    <None Remove="MicrosoftOS\**" />
+    <None Remove="TimerCore\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="AppConfigurations\DesktopShortcutPinner.vb" />
+    <Compile Remove="AppConfigurations\Framework.vb" />
+    <Compile Remove="AppConfigurations\Settings.vb" />
+    <Compile Remove="AppConfigurations\Shortcuts.vb" />
+    <Compile Remove="AppConfigurations\VersionControlSystem.vb" />
+    <Compile Remove="ControlResolutionBlender.vb" />
+    <Compile Remove="EForm.vb" />
+    <Compile Remove="FileSystemSecurity.vb" />
+    <Compile Remove="IControlResolutionPropertyExtender.vb" />
+    <Compile Remove="InputsParsing\TextHandlers.vb" />
+    <Compile Remove="Modules\basUsingINIFiles.vb" />
+    <Compile Remove="MoveControl___RelativeToMousePosition.vb" />
+    <Compile Remove="Objects\EImage.vb" />
+    <Compile Remove="SplashCoordinator\ProcessCoordinator.vb" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualBasic" Version="10.3.0" />
+  </ItemGroup>
+
+</Project>

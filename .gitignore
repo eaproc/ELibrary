@@ -1,0 +1,8 @@
+﻿.idea
+.vs
+obj
+bin
+appsettings.*.json
+
+.env
+.config
