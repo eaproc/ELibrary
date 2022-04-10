@@ -22,7 +22,7 @@ Namespace Objects
         ''' <param name="obj"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Shared Function valueOf(ByVal obj As DBNull) As String
+        Public Shared Function ValueOf(ByVal obj As DBNull) As String
 
             Return String.Empty
 
@@ -36,10 +36,10 @@ Namespace Objects
         ''' <param name="obj"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Shared Function valueOf(ByVal obj As Object) As String
+        Public Shared Function ValueOf(ByVal obj As Object) As String
 
             If obj Is Nothing Then Return String.Empty
-            If TypeOf obj Is DBNull Then Return valueOf(CType(obj, DBNull))
+            If TypeOf obj Is DBNull Then Return ValueOf(CType(obj, DBNull))
 
             Return obj.ToString()
 
@@ -68,12 +68,12 @@ Namespace Objects
 
 
         Public Shared Shadows Function Equals(obj1 As Object, obj2 As Object) As Boolean
-            Return EStrings.valueOf(obj1) = EStrings.valueOf(obj2)
+            Return EStrings.ValueOf(obj1) = EStrings.ValueOf(obj2)
         End Function
 
         Public Shared Shadows Function Equals(obj1 As Object, obj2 As Object, IgnoreCase As Boolean) As Boolean
             If Not IgnoreCase Then Return Equals(obj1, obj2)
-            Return equalsIgnoreCase(EStrings.valueOf(obj1), EStrings.valueOf(obj2))
+            Return equalsIgnoreCase(EStrings.ValueOf(obj1), EStrings.ValueOf(obj2))
         End Function
 
 
@@ -510,7 +510,7 @@ Namespace Objects
             Try
                 For i = 0 To CShort(Len(Str) - 1) Step 3
 
-                    rtr_str &= ChrW(EInt.valueOf(Str.Substring(i, 3)))
+                    rtr_str &= ChrW(EInt.ValueOf(Str.Substring(i, 3)))
 
                 Next
 

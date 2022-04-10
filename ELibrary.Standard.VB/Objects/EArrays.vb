@@ -5,7 +5,7 @@ Namespace Objects
 
 
 
-        Public Shared Function valueOf(Of T)(pObj As Object) As T()
+        Public Shared Function ValueOf(Of T)(pObj As Object) As T()
             If TypeOf pObj Is T() Then Return CType(pObj, T())
             Return Nothing
         End Function

@@ -210,7 +210,7 @@ Namespace InputsParsing
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Shared Function parseOutDouble(pVal As String) As Double
-            Return Objects.EDouble.valueOf(parseOutDoubleAsString(pVal))
+            Return Objects.EDouble.ValueOf(parseOutDoubleAsString(pVal))
         End Function
 
 

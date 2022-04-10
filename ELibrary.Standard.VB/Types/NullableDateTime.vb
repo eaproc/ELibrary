@@ -88,7 +88,7 @@ Namespace Types
         Public ReadOnly Property DateValue As String
             Get
                 If Not Me.isNull Then
-                    Return EDateTime.valueOf(Me.____DateTimeVal, EDateTime.DateFormats.DateFormatsEnum.DateFormat1)
+                    Return EDateTime.ValueOf(Me.____DateTimeVal, EDateTime.DateFormats.DateFormatsEnum.DateFormat1)
                 End If
                 Return NULL_RETURN
             End Get

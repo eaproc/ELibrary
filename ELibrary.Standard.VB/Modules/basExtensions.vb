@@ -47,27 +47,27 @@ Namespace Modules
 #Region "Object Conversions"
         REM Dont put object as extension
 
-        <System.Runtime.CompilerServices.Extension()> _
-        Public Function toInt32(ByVal val As Object) As Int32
-            Return EInt.valueOf(val)
+        <System.Runtime.CompilerServices.Extension()>
+        Public Function ToInt32(ByVal val As Object) As Int32
+            Return EInt.ValueOf(val)
         End Function
 
 
-        <System.Runtime.CompilerServices.Extension()> _
-        Public Function toLong(ByVal val As Object) As Long
-            Return ELong.valueOf(val)
+        <System.Runtime.CompilerServices.Extension()>
+        Public Function ToLong(ByVal val As Object) As Long
+            Return ELong.ValueOf(val)
         End Function
 
 
-        <System.Runtime.CompilerServices.Extension()> _
-        Public Function toDouble(ByVal val As Object) As Double
-            Return EDouble.valueOf(val)
+        <System.Runtime.CompilerServices.Extension()>
+        Public Function ToDouble(ByVal val As Object) As Double
+            Return EDouble.ValueOf(val)
         End Function
 
 
-        <System.Runtime.CompilerServices.Extension()> _
-        Public Function toDecimal(ByVal val As Object) As Decimal
-            Return EDecimal.valueOf(val)
+        <System.Runtime.CompilerServices.Extension()>
+        Public Function ToDecimal(ByVal val As Object) As Decimal
+            Return EDecimal.ValueOf(val)
         End Function
 
         ''' <summary>
@@ -76,9 +76,9 @@ Namespace Modules
         ''' <param name="val"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        <System.Runtime.CompilerServices.Extension()> _
-        Public Function toShort(ByVal val As Object) As Short
-            Return EShort.valueOf(obj:=val)
+        <System.Runtime.CompilerServices.Extension()>
+        Public Function ToShort(ByVal val As Object) As Short
+            Return EShort.ValueOf(obj:=val)
         End Function
 
         ''' <summary>
@@ -87,9 +87,9 @@ Namespace Modules
         ''' <param name="val"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        <System.Runtime.CompilerServices.Extension()> _
-        Public Function toBoolean(ByVal val As Object) As Boolean
-            Return EBoolean.valueOf(obj:=val)
+        <System.Runtime.CompilerServices.Extension()>
+        Public Function ToBoolean(ByVal val As Object) As Boolean
+            Return EBoolean.ValueOf(obj:=val)
         End Function
 
 #End Region

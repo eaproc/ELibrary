@@ -145,7 +145,7 @@ Namespace Objects
 
 
 
-            Public Shared Function valueOf(ByVal _DateFormatsEnum As DateFormatsEnum) As String
+            Public Shared Function ValueOf(ByVal _DateFormatsEnum As DateFormatsEnum) As String
 
                 Select Case _DateFormatsEnum
                     Case Is = DateFormatsEnum.DateFormat1
@@ -193,11 +193,11 @@ Namespace Objects
         '''' <param name="obj"></param>
         '''' <returns></returns>
         '''' <remarks></remarks>
-        'Public Shared Function valueOf(ByVal obj As Object) As String
+        'Public Shared Function ValueOf(ByVal obj As Object) As String
 
         '    Try
         '        If IsDBNull(obj) Then
-        '            Return valueOf(CType(obj, System.DBNull)).ToString()
+        '            Return ValueOf(CType(obj, System.DBNull)).ToString()
         '        Else
         '            Return Microsoft.VisualBasic.Strings.Format(CDate(obj), DateFormats.DateFormat1)
         '        End If
@@ -214,13 +214,13 @@ Namespace Objects
         ''' <param name="obj"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Shared Function valueOf(ByVal obj As Object,
+        Public Shared Function ValueOf(ByVal obj As Object,
                                        ByVal FormatNeeded As DateFormats.DateFormatsEnum) As String
 
-            Return valueOf(obj, DateFormats.valueOf(FormatNeeded))
+            Return ValueOf(obj, DateFormats.ValueOf(FormatNeeded))
         End Function
 
-        Public Shared Function valueOf(ByVal obj As Object,
+        Public Shared Function ValueOf(ByVal obj As Object,
                                        ByVal FormatNeeded As String) As String
             Try
                 If obj Is Nothing OrElse obj.GetType() Is GetType(DBNull) Then
@@ -241,7 +241,7 @@ Namespace Objects
         ''' <param name="FormatNeeded"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Shared Function valueOf(ByVal obj As NullableDateTime,
+        Public Shared Function ValueOf(ByVal obj As NullableDateTime,
                                       ByVal FormatNeeded As String) As String
 
             Try
@@ -256,17 +256,17 @@ Namespace Objects
         End Function
 
         Public Shared Function time__valueOf(ByVal obj As Object) As String
-            Return valueOf(obj, TimeFormatUsedWithoutSeconds)
+            Return ValueOf(obj, TimeFormatUsedWithoutSeconds)
         End Function
 
 
-        Public Shared Function valueOf(ByVal obj As System.DBNull) As Date
+        Public Shared Function ValueOf(ByVal obj As System.DBNull) As Date
             Return Nothing
         End Function
 
 
 
-        Public Shared Function valueOf(ByVal pDateObj As NullableDateTime,
+        Public Shared Function ValueOf(ByVal pDateObj As NullableDateTime,
                                        pReturnFormat As SpecialDateTimeFormats,
                                        Optional ______ReturnIfNULL____ As String = "") As String
             If pDateObj Is Nothing OrElse pDateObj.isNull Then Return ______ReturnIfNULL____
@@ -679,7 +679,7 @@ Namespace Objects
         '    Try
         '        Return New Date(
         '                            CDate(
-        '                                        valueOf(sDate, DateFormats.DateFormatsEnum.DateFormat1)
+        '                                        ValueOf(sDate, DateFormats.DateFormatsEnum.DateFormat1)
         '                                        ).Ticks +
         '                                    CDate(
         '                                FormatDateTime(sTime, vbLongTime)
