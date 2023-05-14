@@ -25,8 +25,9 @@ Namespace Objects
 
                     Return ValueOf(CType(obj, String))
 
-                ElseIf TypeOf obj Is Int16 OrElse TypeOf obj Is Int32 OrElse TypeOf obj Is Int64 OrElse TypeOf obj Is Double OrElse TypeOf obj Is Single OrElse TypeOf obj Is Decimal Then
+                ElseIf TypeOf obj Is Int16 OrElse TypeOf obj Is Int32 OrElse TypeOf obj Is Int64 OrElse TypeOf obj Is Double OrElse TypeOf obj Is Single OrElse TypeOf obj Is Decimal OrElse TypeOf obj Is Byte Then
 
+                    ' Convert all of the above to long type then use long type to bool here
                     Return ValueOf(ELong.ValueOf(obj))
 
 
@@ -88,6 +89,7 @@ Namespace Objects
             End Try
 
         End Function
+
 
         ''' <summary>
         ''' Converts Both Integer String to Boolean. Like "123" AND "TRUE" OR "FASLSE" 

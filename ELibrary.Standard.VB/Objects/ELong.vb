@@ -131,6 +131,7 @@ Namespace Objects
             If TypeOf obj Is Decimal Then Return ValueOf(CType(obj, Decimal))
             If TypeOf obj Is Int16 Then Return ValueOf(CType(obj, Int16))
             If TypeOf obj Is Boolean Then Return ValueOf(CType(obj, Boolean))
+            If TypeOf obj Is Byte Then Return CType(obj, Byte)
             If TypeOf obj Is Color Then Return ValueOf(CType(obj, Color))
 
             Return 0    REM Cant convert this
