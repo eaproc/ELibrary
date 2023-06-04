@@ -50,14 +50,14 @@ Namespace Objects
         Public Shared Function ValueOf(ByVal obj As String) As Boolean
             Try
                 If obj IsNot Nothing AndAlso obj <> String.Empty Then
-                    If EStrings.equalsIgnoreCase(obj, "yes") OrElse
-                        EStrings.equalsIgnoreCase(obj, "y") Then Return True
-                    If EStrings.equalsIgnoreCase(obj, "no") OrElse
-                        EStrings.equalsIgnoreCase(obj, "n") Then Return False
-                    If EStrings.equalsIgnoreCase(obj, "true") OrElse
-                        EStrings.equalsIgnoreCase(obj, "t") Then Return True
-                    If EStrings.equalsIgnoreCase(obj, "false") OrElse
-                        EStrings.equalsIgnoreCase(obj, "f") Then Return False
+                    If EStrings.EqualsIgnoreCase(obj, "yes") OrElse
+                        EStrings.EqualsIgnoreCase(obj, "y") Then Return True
+                    If EStrings.EqualsIgnoreCase(obj, "no") OrElse
+                        EStrings.EqualsIgnoreCase(obj, "n") Then Return False
+                    If EStrings.EqualsIgnoreCase(obj, "true") OrElse
+                        EStrings.EqualsIgnoreCase(obj, "t") Then Return True
+                    If EStrings.EqualsIgnoreCase(obj, "false") OrElse
+                        EStrings.EqualsIgnoreCase(obj, "f") Then Return False
                 End If
                 REM Check if it is number else try returning it like True written in string
                 Dim TryInt As Int16

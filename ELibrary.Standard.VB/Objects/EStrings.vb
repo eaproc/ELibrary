@@ -8,26 +8,11 @@ Namespace Objects
     ''' <remarks></remarks>
     Public Class EStrings
 
-        ''' <summary>
-        ''' For quotation mark
-        ''' </summary>
-        ''' <remarks></remarks>
-        Public Const QUOTE As String = ChrW(34)
-
-
-
-        ''' <summary>
-        ''' Converts DBNUll to System.String.Empty()
-        ''' </summary>
-        ''' <param name="obj"></param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
-        Public Shared Function ValueOf(ByVal obj As DBNull) As String
-
-            Return String.Empty
-
-        End Function
-
+        '''' <summary>
+        '''' For quotation mark
+        '''' </summary>
+        '''' <remarks></remarks>
+        'Public Const QUOTE As String = ChrW(34)
 
 
         ''' <summary>
@@ -39,17 +24,11 @@ Namespace Objects
         Public Shared Function ValueOf(ByVal obj As Object) As String
 
             If obj Is Nothing Then Return String.Empty
-            If TypeOf obj Is DBNull Then Return ValueOf(CType(obj, DBNull))
+            If TypeOf obj Is DBNull Then Return String.Empty
 
             Return obj.ToString()
 
         End Function
-
-
-
-
-
-
 
         ''' <summary>
         ''' Checks if String1 equals String2 Ignoring the Case Sensitivity
@@ -58,7 +37,7 @@ Namespace Objects
         ''' <param name="str2"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Shared Function equalsIgnoreCase(ByVal str1 As String, ByVal str2 As String) As Boolean
+        Public Shared Function EqualsIgnoreCase(ByVal str1 As String, ByVal str2 As String) As Boolean
             If str1 Is Nothing AndAlso str2 Is Nothing Then Return True
             If str1 Is Nothing OrElse str2 Is Nothing Then Return False
 
@@ -73,7 +52,7 @@ Namespace Objects
 
         Public Shared Shadows Function Equals(obj1 As Object, obj2 As Object, IgnoreCase As Boolean) As Boolean
             If Not IgnoreCase Then Return Equals(obj1, obj2)
-            Return equalsIgnoreCase(EStrings.ValueOf(obj1), EStrings.ValueOf(obj2))
+            Return EqualsIgnoreCase(EStrings.ValueOf(obj1), EStrings.ValueOf(obj2))
         End Function
 
 
@@ -110,7 +89,7 @@ Namespace Objects
         ''' <param name="value"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Shared Function isEmpty(ByVal value As String) As Boolean
+        Public Shared Function IsEmpty(ByVal value As String) As Boolean
             If value Is Nothing Then Return True
             If value = vbNullString Then Return True
             If String.IsNullOrEmpty(value) Then Return True
@@ -234,100 +213,98 @@ Namespace Objects
         End Function
 
 
-        ''' <summary>
-        ''' Determines if Version1 precedes Version2. 
-        ''' If 1 > 2 returns 1.
-        ''' if 1 = 2 returns 0.
-        ''' if 1 &lt; 2 returns -1.
-        ''' </summary>
-        ''' <param name="version1"></param>
-        ''' <param name="version2"></param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
-        Public Shared Function CompareVersions(ByVal version1 As String, ByVal version2 As String) As Integer
+        '''' <summary>
+        '''' Determines if Version1 precedes Version2. 
+        '''' If 1 > 2 returns 1.
+        '''' if 1 = 2 returns 0.
+        '''' if 1 &lt; 2 returns -1.
+        '''' </summary>
+        '''' <param name="version1"></param>
+        '''' <param name="version2"></param>
+        '''' <returns></returns>
+        '''' <remarks></remarks>
+        'Public Shared Function CompareVersions(ByVal version1 As String, ByVal version2 As String) As Integer
 
-            Dim SplittedV1() As String = version1.Split("."), SplittedV2() As String = version2.Split("."), SplittedTMP() As String
-            Dim isSwapped As Integer = 1
-
-
-            REM Check for the longest length
-            If SplittedV2.Count > SplittedV1.Count Then
-                REM Swapp
-                'SplittedTMP = New String() {}
-                SplittedTMP = SplittedV1
-                SplittedV1 = SplittedV2
-                SplittedV2 = SplittedTMP
-                SplittedTMP = Nothing  REM Free the space
-                isSwapped = -1
+        '    Dim SplittedV1() As String = version1.Split("."), SplittedV2() As String = version2.Split("."), SplittedTMP() As String
+        '    Dim isSwapped As Integer = 1
 
 
-            End If
+        '    REM Check for the longest length
+        '    If SplittedV2.Count > SplittedV1.Count Then
+        '        REM Swapp
+        '        'SplittedTMP = New String() {}
+        '        SplittedTMP = SplittedV1
+        '        SplittedV1 = SplittedV2
+        '        SplittedV2 = SplittedTMP
+        '        isSwapped = -1
+
+        '    End If
 
 
-            For xIndex As Integer = 0 To SplittedV1.Count - 1
+        '    For xIndex As Integer = 0 To SplittedV1.Count - 1
 
-                If xIndex < SplittedV2.Count Then
+        '        If xIndex < SplittedV2.Count Then
 
-                    If CInt(SplittedV1(xIndex)) > CInt(SplittedV2(xIndex)) Then
+        '            If CInt(SplittedV1(xIndex)) > CInt(SplittedV2(xIndex)) Then
 
-                        Return 1 * isSwapped
+        '                Return 1 * isSwapped
 
-                    ElseIf CInt(SplittedV1(xIndex)) < CInt(SplittedV2(xIndex)) Then
+        '            ElseIf CInt(SplittedV1(xIndex)) < CInt(SplittedV2(xIndex)) Then
 
-                        Return -1 * isSwapped
+        '                Return -1 * isSwapped
 
-                    End If
-
-
-                ElseIf CInt(SplittedV1(xIndex)) > 0 Then
-
-                    Return 1 * isSwapped
-
-                End If
-
-            Next
+        '            End If
 
 
-            'CompareVersions = version1.CompareTo(version2)
+        '        ElseIf CInt(SplittedV1(xIndex)) > 0 Then
 
-            Return 0
+        '            Return 1 * isSwapped
 
-        End Function
+        '        End If
+
+        '    Next
+
+
+        '    'CompareVersions = version1.CompareTo(version2)
+
+        '    Return 0
+
+        'End Function
 
 
 
 
 
-        ''' <summary>
-        ''' Splits a string and returns result with empty string element
-        ''' </summary>
-        ''' <param name="expression"></param>
-        ''' <param name="delimiter"></param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
-        Public Shared Function splitWithoutNullElement(ByVal expression As String,
-                                                       Optional ByVal delimiter As String = ",") As String()
+        '''' <summary>
+        '''' Splits a string and returns result with empty string element
+        '''' </summary>
+        '''' <param name="expression"></param>
+        '''' <param name="delimiter"></param>
+        '''' <returns></returns>
+        '''' <remarks></remarks>
+        'Public Shared Function splitWithoutNullElement(ByVal expression As String,
+        '                                               Optional ByVal delimiter As String = ",") As String()
 
-            Dim s_split() As String = expression.Split(delimiter)
-            If expression = vbNullString Then Return New String() {}
-            If s_split Is Nothing Then Return New String() {}
-            If s_split.Length = 0 Then Return New String() {}
+        '    Dim s_split() As String = expression.Split(delimiter)
+        '    If expression = vbNullString Then Return New String() {}
+        '    If s_split Is Nothing Then Return New String() {}
+        '    If s_split.Length = 0 Then Return New String() {}
 
-            Dim l_split As List(Of String) = New List(Of String)(s_split.Length)
+        '    Dim l_split As List(Of String) = New List(Of String)(s_split.Length)
 
-            For Each s As String In s_split
+        '    For Each s As String In s_split
 
-                If s.Trim = vbNullString Then Continue For
-                l_split.Add(s)
-
-
-            Next
+        '        If s.Trim = vbNullString Then Continue For
+        '        l_split.Add(s)
 
 
+        '    Next
 
-            Return l_split.ToArray
 
-        End Function
+
+        '    Return l_split.ToArray
+
+        'End Function
 
 
         ''' <summary>
@@ -396,7 +373,7 @@ Namespace Objects
         ''' <param name="AbbvSymbol"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Shared Function getFirstAbbreviatedLetter(ByVal strString As String,
+        Public Shared Function GetFirstAbbreviatedLetter(ByVal strString As String,
                                                          Optional ByVal Capitalized As Boolean = True,
                                                          Optional ByVal AbbvSymbol As String = "."
                                                                                                ) As String
@@ -505,9 +482,9 @@ Namespace Objects
             If Len(Str) Mod 3 <> 0 Then Return vbNullString
 
             Dim rtr_str As String = vbNullString
-            Dim i As Int16 = 0
 
             Try
+                Dim i As Short
                 For i = 0 To CShort(Len(Str) - 1) Step 3
 
                     rtr_str &= ChrW(EInt.ValueOf(Str.Substring(i, 3)))
@@ -530,7 +507,7 @@ Namespace Objects
         ''' <param name="pVal"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Shared Function isEscapeCharacters(pVal As String) As Boolean
+        Public Shared Function IsEscapeCharacters(pVal As String) As Boolean
 
             If pVal Is Nothing OrElse pVal = String.Empty Then Return False
 
@@ -548,8 +525,8 @@ Namespace Objects
         ''' <param name="pEscapeChars"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Public Shared Function translateEscapeCharacters(pEscapeChars As String) As String
-            If Not isEscapeCharacters(pEscapeChars) Then Return String.Empty
+        Public Shared Function TranslateEscapeCharacters(pEscapeChars As String) As String
+            If Not IsEscapeCharacters(pEscapeChars) Then Return String.Empty
             Dim rs As String = String.Empty
 
             For Each ds As String In pEscapeChars.Split("\"c)

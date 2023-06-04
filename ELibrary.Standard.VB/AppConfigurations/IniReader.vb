@@ -225,7 +225,7 @@ Namespace AppConfigurations
             Me.KeyValuePairDelimiter = KeyVDelimiter
 
             REM Translate LineDelimiter
-            If Objects.EStrings.isEscapeCharacters(LineVDelimiter) Then LineVDelimiter = Objects.EStrings.translateEscapeCharacters(LineVDelimiter)
+            If Objects.EStrings.IsEscapeCharacters(LineVDelimiter) Then LineVDelimiter = Objects.EStrings.TranslateEscapeCharacters(LineVDelimiter)
 
 
             If (IgnoreSpecialComments Is Nothing) Then IgnoreSpecialComments = New List(Of String)

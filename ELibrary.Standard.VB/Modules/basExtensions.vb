@@ -106,7 +106,7 @@ Namespace Modules
         ''' <remarks></remarks>
         <System.Runtime.CompilerServices.Extension()> _
         Public Function equalsIgnoreCase(ByVal str1 As String, ByVal str2 As String) As Boolean
-            Return EStrings.equalsIgnoreCase(str1, str2)
+            Return EStrings.EqualsIgnoreCase(str1, str2)
         End Function
 
 
