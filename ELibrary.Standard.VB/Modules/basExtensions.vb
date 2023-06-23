@@ -192,6 +192,17 @@ Namespace Modules
             Return New String(Enumerable.Range(0, d).Select(Function(z) c).ToArray())
         End Function
 
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        ''' <param name="pStr"></param>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
+        <System.Runtime.CompilerServices.Extension()>
+        Public Function IsNullOrTrimmedEmpty(ByVal str As String) As Boolean
+            Return str Is Nothing OrElse Not str.Trim().Any()
+        End Function
+
 
 
 
