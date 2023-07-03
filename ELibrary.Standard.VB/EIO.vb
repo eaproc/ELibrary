@@ -234,7 +234,7 @@ Public Class EIO
     ''' <param name="FilePath"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function getDirectoryFullPath(ByVal FilePath As String) As String
+    Public Shared Function GetDirectoryFullPath(ByVal FilePath As String) As String
         Try
             Return Path.GetDirectoryName(FilePath)
 
@@ -250,7 +250,7 @@ Public Class EIO
     ''' <param name="__FileName">a File Name without the full path</param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function getFileNameWithoutExtension(ByVal __FileName As String) As String
+    Public Shared Function GetFileNameWithoutExtension(ByVal __FileName As String) As String
         Dim fName As String = IO.Path.GetFileName(__FileName)
 
         Return Path.GetFileNameWithoutExtension(__FileName)
@@ -262,7 +262,7 @@ Public Class EIO
     ''' <param name="uri"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function getFileName(ByVal uri As Uri) As String
+    Public Shared Function GetFileName(ByVal uri As Uri) As String
 
         Return Path.GetFileName(uri.AbsolutePath)
 
@@ -276,7 +276,7 @@ Public Class EIO
     ''' <param name="URL"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function getFileName(ByVal URL As String) As String
+    Public Shared Function GetFileName(ByVal URL As String) As String
 
         Return Path.GetFileName(URL)
 
@@ -299,9 +299,9 @@ Public Class EIO
     ''' <param name="pIncrementSeparator">if you want a separator between filename and increment. NB: Increment must be file naming compatible.</param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function suggestFileUniqueFullFilePathName(ByVal pIntendedFileFullPath As String,
+    Public Shared Function SuggestFileUniqueFullFilePathName(ByVal pIntendedFileFullPath As String,
                                                              Optional ByVal pIncrementSeparator As String = "___") As String
-        Return suggestFileUniqueFullFilePathName(EIO.getDirectoryFullPath(pIntendedFileFullPath),
+        Return SuggestFileUniqueFullFilePathName(EIO.GetDirectoryFullPath(pIntendedFileFullPath),
                                                  EIO.GetFileExtension(pIntendedFileFullPath),
                                                  pIncrementSeparator
                                                  )
@@ -316,7 +316,7 @@ Public Class EIO
     ''' <param name="IncrementSeparator">if you want a separator between filename and increment. NB: Increment must be file naming compatible.</param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function suggestFileUniqueFullFilePathName(ByVal pIntendedFileFolderWithBackSlash As String,
+    Public Shared Function SuggestFileUniqueFullFilePathName(ByVal pIntendedFileFolderWithBackSlash As String,
                                                              ByVal intendedFileName As String,
                                                               ByVal IncrementSeparator As String) As String
 
@@ -324,57 +324,57 @@ Public Class EIO
         REM Path.getExtension returns dot as well like .csv
 
         If Not Directory.Exists(pIntendedFileFolderWithBackSlash) Then Return String.Empty
-            If Not pIntendedFileFolderWithBackSlash.EndsWith("\") Then pIntendedFileFolderWithBackSlash &= "\"
+        If Not pIntendedFileFolderWithBackSlash.EndsWith("\") Then pIntendedFileFolderWithBackSlash &= "\"
 
-            If Not File.Exists(pIntendedFileFolderWithBackSlash & intendedFileName) Then _
+        If Not File.Exists(pIntendedFileFolderWithBackSlash & intendedFileName) Then _
                 Return pIntendedFileFolderWithBackSlash & intendedFileName
 
 
-            Dim Increments() As String =
+        Dim Increments() As String =
                 Directory.GetFiles(pIntendedFileFolderWithBackSlash,
                                  String.Format("{0}{1}*{2}", Path.GetFileNameWithoutExtension(intendedFileName),
                                                IncrementSeparator, Path.GetExtension(intendedFileName)
                                                )
                                )
 
-            If Increments Is Nothing OrElse Increments.Length = 0 Then Return String.Format("{0}{1}{2}1{3}",
+        If Increments Is Nothing OrElse Increments.Length = 0 Then Return String.Format("{0}{1}{2}1{3}",
                                             pIntendedFileFolderWithBackSlash,
                                             Path.GetFileNameWithoutExtension(intendedFileName),
                                                IncrementSeparator, Path.GetExtension(intendedFileName)
                                                )
 
 
-            REM It is always sorted according to name ascending order by default [NOT GAURANTEED]
-            '   Array.Sort(Increments)  REM Gaurantee sorting
+        REM It is always sorted according to name ascending order by default [NOT GAURANTEED]
+        '   Array.Sort(Increments)  REM Gaurantee sorting
 
-            Increments = Increments.ToList().OrderByDescending(Function(x) x).ToArray()
-            Dim pTopmostIncrementFileFullPath As String = Increments.First()
-
-
-            REM Just the filename without folder path and extension
-            Dim pIntendedFileNameWithoutExtension As String = Path.GetFileNameWithoutExtension(intendedFileName)
+        Increments = Increments.ToList().OrderByDescending(Function(x) x).ToArray()
+        Dim pTopmostIncrementFileFullPath As String = Increments.First()
 
 
+        REM Just the filename without folder path and extension
+        Dim pIntendedFileNameWithoutExtension As String = Path.GetFileNameWithoutExtension(intendedFileName)
 
-            '   Fetching the incrementValue
-            Dim pIncrement As Int32 = 0
 
-            '   
-            If pIntendedFileNameWithoutExtension.equalsIgnoreCase(Path.GetFileNameWithoutExtension(pTopmostIncrementFileFullPath)) Then
-                pIncrement = 1
 
-            Else
+        '   Fetching the incrementValue
+        Dim pIncrement As Int32 = 0
 
-                Dim pTopmostIncrementFileName = Path.GetFileNameWithoutExtension(pTopmostIncrementFileFullPath)
-                Dim pDifference = pTopmostIncrementFileName.Substring(pIntendedFileNameWithoutExtension.Length,
+        '   
+        If pIntendedFileNameWithoutExtension.equalsIgnoreCase(Path.GetFileNameWithoutExtension(pTopmostIncrementFileFullPath)) Then
+            pIncrement = 1
+
+        Else
+
+            Dim pTopmostIncrementFileName = Path.GetFileNameWithoutExtension(pTopmostIncrementFileFullPath)
+            Dim pDifference = pTopmostIncrementFileName.Substring(pIntendedFileNameWithoutExtension.Length,
                                                                        pTopmostIncrementFileName.Length - pIntendedFileNameWithoutExtension.Length
                                                                        )
-                pIncrement = InputsParsing.TextParsing.parseOutIntegers(pDifference).toInt32() + 1
+            pIncrement = InputsParsing.TextParsing.parseOutIntegers(pDifference).ToInt32() + 1
 
-            End If
+        End If
 
 
-            Return String.Format("{0}{1}{2}{3}{4}",
+        Return String.Format("{0}{1}{2}{3}{4}",
                                              pIntendedFileFolderWithBackSlash,
                                             Path.GetFileNameWithoutExtension(intendedFileName),
                                                IncrementSeparator, pIncrement,
@@ -382,7 +382,7 @@ Public Class EIO
                                                )
 
 
-            Return String.Empty
+        Return String.Empty
 
     End Function
 
@@ -453,7 +453,7 @@ Public Class EIO
     ''' <param name="objType"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function get_Code_File_StartUp_File_FullPathName(ByVal objType As System.Type) As String
+    Public Shared Function Get_Code_File_StartUp_File_FullPathName(objType As System.Type) As String
         Return objType.Assembly.Location
     End Function
 
@@ -463,7 +463,7 @@ Public Class EIO
     ''' <param name="objType"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function get_Code_File_StartUp_Path(ByVal objType As System.Type) As String
+    Public Shared Function Get_Code_File_StartUp_Path(ByVal objType As System.Type) As String
 
         Return System.IO.Directory.GetParent(objType.Assembly.Location).ToString
 
@@ -475,7 +475,7 @@ Public Class EIO
     ''' <param name="FilePath"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function get_GUID_From_File(ByVal FilePath As String) As String
+    Public Shared Function Get_GUID_From_File(ByVal FilePath As String) As String
         Try
 
             Dim fLoadedByte As Byte() = System.IO.File.ReadAllBytes(FilePath)
@@ -502,7 +502,7 @@ Public Class EIO
     ''' <param name="FolderPath"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Shared Function isFolderWritableAndReadable(ByVal FolderPath As String) As Boolean
+    Public Shared Function IsFolderWritableAndReadable(ByVal FolderPath As String) As Boolean
 
         Try
 
@@ -741,7 +741,7 @@ Public Class EIO
     ''' <remarks></remarks>
     Public Shared Function CopyFile(ByVal src As String, ByVal dst As String,
                                          Optional overwrite As Boolean = True) As Boolean
-        If Not Directory.Exists(getDirectoryFullPath(dst)) Then Directory.CreateDirectory(getDirectoryFullPath(dst))
+        If Not Directory.Exists(GetDirectoryFullPath(dst)) Then Directory.CreateDirectory(GetDirectoryFullPath(dst))
         File.Copy(src, dst, overwrite)
         Return True
     End Function
@@ -756,7 +756,7 @@ Public Class EIO
     Public Shared Function CopyFileToDir(ByVal src As String, ByVal dstDir As String,
                                          Optional overwrite As Boolean = True) As Boolean
         If Not Directory.Exists(dstDir) Then Directory.CreateDirectory(dstDir)
-        Return CopyFile(src, String.Format("{0}\{1}", dstDir, getFileName(src)), overwrite)
+        Return CopyFile(src, String.Format("{0}\{1}", dstDir, GetFileName(src)), overwrite)
     End Function
 
 End Class
