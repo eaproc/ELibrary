@@ -54,7 +54,7 @@ Namespace Objects
                                               ByVal CurrentItem As String,
                                               Optional ByVal Delimiter As String = ","
                                               ) As String
-            If strElements Is Nothing OrElse strElements = String.Empty Then Return String.Empty
+            If strElements Is Nothing OrElse strElements = string.Empty Then Return string.Empty
 
             Dim strElementsArray As String() = strElements.Split(New String() {Delimiter}, StringSplitOptions.RemoveEmptyEntries)
             Dim indexOfCurrent As Integer = Array.IndexOf(strElementsArray, CurrentItem)
@@ -80,7 +80,7 @@ Namespace Objects
         'Public Shared Function Search_in_Array(ByVal strArray(,) As String, ByVal strSearch As String,
         '                            ByVal DirectCastEqualsTheValueNotInstr As Boolean) As Integer
 
-        '    If strArray Is Nothing OrElse strSearch Is Nothing OrElse strSearch = String.Empty Then Return -1
+        '    If strArray Is Nothing OrElse strSearch Is Nothing OrElse strSearch = string.Empty Then Return -1
         '    If Not DirectCastEqualsTheValueNotInstr Then Return Search_in_Array(strArray, strSearch)
         '    '
         '    '   Search element in one dimensional array and returns the index if found else returns -1
@@ -436,7 +436,7 @@ Namespace Objects
 
 
         Public Shared Function convert_to_string(ByVal lst As List(Of String), ByVal Delimiter As String) As String
-            Return convert_to_string(lst, Delimiter, String.Empty)
+            Return convert_to_string(lst, Delimiter, string.Empty)
         End Function
 
         Public Shared Function convert_to_string(ByVal lst As List(Of String),
@@ -450,14 +450,14 @@ Namespace Objects
                                           ByVal Delimiter As String,
                                           ByVal PadFront As String,
                                           ByVal Numbered As Boolean) As String
-            Dim result As String = String.Empty
+            Dim result As String = string.Empty
             If Delimiter Is Nothing Then Delimiter = vbCrLf
             If lst Is Nothing Then Return result
 
             For i As Int16 = 0 To CShort(lst.Count - 1)
 
                 If Numbered Then
-                    result &= String.Format("{0}.) {1}{2}", i + 1, PadFront, lst(i))
+                    result &= string.Format("{0}.) {1}{2}", i + 1, PadFront, lst(i))
                 Else
                     result &= PadFront & lst(i)
                 End If

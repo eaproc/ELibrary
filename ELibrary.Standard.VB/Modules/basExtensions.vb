@@ -37,7 +37,7 @@ Namespace Modules
         ''' <remarks></remarks>
         <System.Runtime.CompilerServices.Extension()>
         Public Function FormatNumber(ByVal v As Double, ByVal precision As Integer) As String
-            Return v.ToString(String.Format("N{0}", precision))
+            Return v.ToString(string.Format("N{0}", precision))
         End Function
 
 

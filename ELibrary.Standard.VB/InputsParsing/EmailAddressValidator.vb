@@ -13,7 +13,7 @@ Public Class EmailAddressValidator
 
     Public Function IsValidEmail(strIn As String) As Boolean
         invalid = False
-        If String.IsNullOrEmpty(strIn) Then Return False
+        If string.IsNullOrEmpty(strIn) Then Return False
 
         ' Use IdnMapping class to convert Unicode domain names.
         Try

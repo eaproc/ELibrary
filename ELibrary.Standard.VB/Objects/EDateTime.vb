@@ -274,12 +274,12 @@ Namespace Objects
 
             Select Case pReturnFormat
                 Case SpecialDateTimeFormats.STYLE1
-                    Return String.Format("{0}/{1}/{2}", pDateObj.DateTimeValue.Day,
+                    Return string.Format("{0}/{1}/{2}", pDateObj.DateTimeValue.Day,
                                          getShortMonthNameInEnglish(pDateObj.DateTimeValue),
                                          pDateObj.DateTimeValue.Year)
 
                 Case SpecialDateTimeFormats.STYLE2
-                    Return String.Format("{0}/{1}/{2} {3}", pDateObj.DateTimeValue.Day,
+                    Return string.Format("{0}/{1}/{2} {3}", pDateObj.DateTimeValue.Day,
                                         getShortMonthNameInEnglish(pDateObj.DateTimeValue),
                                         pDateObj.DateTimeValue.Year,
                                         pDateObj.DateTimeValue.ToString(TimeFormatUsedWithSeconds)
@@ -504,7 +504,7 @@ Namespace Objects
                                 MinsSec
                                  )
 
-            Return String.Format(
+            Return string.Format(
                             "{0}:{1}:{2}",
                            WrapUpAtLeast(CStr(HoursSec), 2),
                            WrapUp(CStr(MinsSec), 2),
@@ -532,7 +532,7 @@ Namespace Objects
             Dim MinsSec As Long = getMins(SecsLeft)
 
 
-            Return String.Format(
+            Return string.Format(
                             "{0}:{1}",
                             WrapUpAtLeast(CStr(HoursSec), 2),
                            WrapUp(CStr(MinsSec), 2)
@@ -703,7 +703,7 @@ Namespace Objects
             Dim dTime As Date = Date.Now
 
             If WithSpacedCharacters Then
-                Return String.Format("{0} : {1} : {2} {3}",
+                Return string.Format("{0} : {1} : {2} {3}",
                                      WrapUp(CStr(dTime.Hour Mod 12), 2),
                                      WrapUp(CStr(dTime.Minute), 2),
                                      WrapUp(CStr(dTime.Second), 2),
@@ -712,7 +712,7 @@ Namespace Objects
 
             Else
 
-                Return String.Format("{0}:{1}:{2} {3}",
+                Return string.Format("{0}:{1}:{2} {3}",
                                      WrapUp(CStr(dTime.Hour Mod 12), 2),
                                      WrapUp(CStr(dTime.Minute), 2),
                                      WrapUp(CStr(dTime.Second), 2),

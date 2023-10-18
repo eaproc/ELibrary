@@ -16,15 +16,15 @@ Namespace Objects
 
 
         ''' <summary>
-        ''' Converts Objects to String. Returns System.String.Empty() if it is nothing
+        ''' Converts Objects to string. Returns System.string.Empty() if it is nothing
         ''' </summary>
         ''' <param name="obj"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Shared Function ValueOf(ByVal obj As Object) As String
 
-            If obj Is Nothing Then Return String.Empty
-            If TypeOf obj Is DBNull Then Return String.Empty
+            If obj Is Nothing Then Return string.Empty
+            If TypeOf obj Is DBNull Then Return string.Empty
 
             Return obj.ToString()
 
@@ -92,8 +92,8 @@ Namespace Objects
         Public Shared Function IsEmpty(ByVal value As String) As Boolean
             If value Is Nothing Then Return True
             If value = vbNullString Then Return True
-            If String.IsNullOrEmpty(value) Then Return True
-            If value.Trim().Equals(String.Empty) Then Return True
+            If string.IsNullOrEmpty(value) Then Return True
+            If value.Trim().Equals(string.Empty) Then Return True
             Return False
         End Function
 
@@ -111,13 +111,13 @@ Namespace Objects
 
 
         ''' <summary>
-        ''' Quote String. Sample Man ==> "Man"
+        ''' Quote string. Sample Man ==> "Man"
         ''' </summary>
         ''' <param name="Expression"></param>
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Shared Function QuoteString(ByVal Expression As String) As String
-            Return String.Format(
+            Return string.Format(
                                 "{0}{1}{0}", ChrW(34), Expression
                                 )
         End Function
@@ -127,7 +127,7 @@ Namespace Objects
         ''' <summary>
         '''  If Original Length is Greater Than The Specified Length,
         '''     It returns the same string
-        '''  Otherwise, if less than, String is buffered with specified character. Same Function as String.PadLeft or String.PadRight
+        '''  Otherwise, if less than, String is buffered with specified character. Same Function as string.PadLeft or string.PadRight
         ''' 
         ''' <example>Wraps up a string to a Specified Length.  
         ''' <code>
@@ -171,7 +171,7 @@ Namespace Objects
         ''' <summary>
         '''  If Original Length is Greater Than The Specified Length,
         '''      Length is cut to specified lenth
-        '''  Otherwise, if less than, String is buffered with specified character. Same Function as String.PadLeft or String.PadRight
+        '''  Otherwise, if less than, String is buffered with specified character. Same Function as string.PadLeft or string.PadRight
         ''' 
         ''' <example>Wraps up a string to a Specified Length.  
         ''' <code>
@@ -200,7 +200,7 @@ Namespace Objects
                 End If
 
                 If Len(OriginalString) > ReturnLength Then
-                    Return OriginalString.Substring(0, Len(OriginalString) - ReturnLength)
+                    Return Originalstring.Substring(0, Len(OriginalString) - ReturnLength)
                     'Return Left(OriginalString, Len(OriginalString) - ReturnLength)
                 End If
 
@@ -377,8 +377,8 @@ Namespace Objects
                                                          Optional ByVal Capitalized As Boolean = True,
                                                          Optional ByVal AbbvSymbol As String = "."
                                                                                                ) As String
-            If strString.Length < 1 Then Return ""
-            Dim AbbvStr As String = strString.Substring(0, 1).ToLower
+            If strstring.Length < 1 Then Return ""
+            Dim AbbvStr As String = strstring.Substring(0, 1).ToLower
 
             If Capitalized Then AbbvStr = AbbvStr.ToUpper
 
@@ -402,7 +402,7 @@ Namespace Objects
             Dim loopInc As Byte
             For Each arg As String In args
                 Expression = Replace(Expression,
-                        String.Format("*:={0}", loopInc),
+                        string.Format("*:={0}", loopInc),
                         arg
                         )
 
@@ -509,7 +509,7 @@ Namespace Objects
         ''' <remarks></remarks>
         Public Shared Function IsEscapeCharacters(pVal As String) As Boolean
 
-            If pVal Is Nothing OrElse pVal = String.Empty Then Return False
+            If pVal Is Nothing OrElse pVal = string.Empty Then Return False
 
             Dim IRst As IEnumerable(Of String) = From ds As String In pVal.Split("\"c)
                                                  Where ds = "n" OrElse ds = "r" OrElse ds = "t" OrElse ds = "b" OrElse ds = "f" OrElse ds = "'" OrElse ds = "\" OrElse ds = """"
@@ -526,8 +526,8 @@ Namespace Objects
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Shared Function TranslateEscapeCharacters(pEscapeChars As String) As String
-            If Not IsEscapeCharacters(pEscapeChars) Then Return String.Empty
-            Dim rs As String = String.Empty
+            If Not IsEscapeCharacters(pEscapeChars) Then Return string.Empty
+            Dim rs As String = string.Empty
 
             For Each ds As String In pEscapeChars.Split("\"c)
                 Select Case ds
@@ -613,12 +613,12 @@ Namespace Objects
                                                pEncoding As System.Text.Encoding
                                                ) As String
 
-            pString = pString.Trim()
-                If pString = String.Empty Then Return pString
+            pString = pstring.Trim()
+                If pString = string.Empty Then Return pString
 
-                Dim pMode = pString.Length Mod 4
+                Dim pMode = pstring.Length Mod 4
 
-                If pMode <> 0 Then pString = pString.PadRight(pString.Length + 4 - pMode, "="c)
+                If pMode <> 0 Then pString = pstring.PadRight(pstring.Length + 4 - pMode, "="c)
 
                 Return pEncoding.GetString(
                     Convert.FromBase64String(

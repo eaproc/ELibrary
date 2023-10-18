@@ -19,7 +19,7 @@ Public Class EMaths
     '    If xTurkishEntry.IndexOf(",") >= 0 Then
 
     '        Dim SplittedCInt() As String = Split(xTurkishEntry, ",")
-    '        Return String.Format("{0}.{1}", SplittedVal)
+    '        Return string.Format("{0}.{1}", SplittedVal)
 
     '    End If
 

@@ -16,7 +16,7 @@
         ''' <remarks></remarks>
         Public Overloads Shared Function ValueOf(ByVal obj As String) As Decimal
             Try
-                If obj Is Nothing OrElse obj.Trim() = String.Empty Then Return 0
+                If obj Is Nothing OrElse obj.Trim() = string.Empty Then Return 0
                 Return CDec(obj)
 
             Catch ex As Exception

@@ -84,7 +84,7 @@ Public Class EIO
 
     '        With New MicrosoftOS.CommandPrompt(False, False)
 
-    '            Return .Execute(String.Format("rmdir /S /Q ""{0}"" ", DirectoryPath))
+    '            Return .Execute(string.Format("rmdir /S /Q ""{0}"" ", DirectoryPath))
 
     '        End With
 
@@ -323,7 +323,7 @@ Public Class EIO
 
         REM Path.getExtension returns dot as well like .csv
 
-        If Not Directory.Exists(pIntendedFileFolderWithBackSlash) Then Return String.Empty
+        If Not Directory.Exists(pIntendedFileFolderWithBackSlash) Then Return string.Empty
         If Not pIntendedFileFolderWithBackSlash.EndsWith("\") Then pIntendedFileFolderWithBackSlash &= "\"
 
         If Not File.Exists(pIntendedFileFolderWithBackSlash & intendedFileName) Then _
@@ -332,12 +332,12 @@ Public Class EIO
 
         Dim Increments() As String =
                 Directory.GetFiles(pIntendedFileFolderWithBackSlash,
-                                 String.Format("{0}{1}*{2}", Path.GetFileNameWithoutExtension(intendedFileName),
+                                 string.Format("{0}{1}*{2}", Path.GetFileNameWithoutExtension(intendedFileName),
                                                IncrementSeparator, Path.GetExtension(intendedFileName)
                                                )
                                )
 
-        If Increments Is Nothing OrElse Increments.Length = 0 Then Return String.Format("{0}{1}{2}1{3}",
+        If Increments Is Nothing OrElse Increments.Length = 0 Then Return string.Format("{0}{1}{2}1{3}",
                                             pIntendedFileFolderWithBackSlash,
                                             Path.GetFileNameWithoutExtension(intendedFileName),
                                                IncrementSeparator, Path.GetExtension(intendedFileName)
@@ -374,7 +374,7 @@ Public Class EIO
         End If
 
 
-        Return String.Format("{0}{1}{2}{3}{4}",
+        Return string.Format("{0}{1}{2}{3}{4}",
                                              pIntendedFileFolderWithBackSlash,
                                             Path.GetFileNameWithoutExtension(intendedFileName),
                                                IncrementSeparator, pIncrement,
@@ -382,7 +382,7 @@ Public Class EIO
                                                )
 
 
-        Return String.Empty
+        Return string.Empty
 
     End Function
 
@@ -413,19 +413,19 @@ Public Class EIO
     '    While True
 
     '        If File.Exists(
-    '            String.Format(
+    '            string.Format(
     '                "{0}\{1}{2}", FolderPath, chkFile, __ext
     '                )
     '            ) Then
 
     '            iCount += 1
 
-    '            chkFile = String.Format(
+    '            chkFile = string.Format(
     '                                "{0}_{1}", sName, iCount
     '                                )
     '        Else
 
-    '            Return String.Format(
+    '            Return string.Format(
     '                "{0}\{1}{2}", FolderPath, chkFile, __ext
     '                )
 
@@ -490,7 +490,7 @@ Public Class EIO
                                                                                   ).Value
                                                                                   )
         Catch ex As Exception
-            Return String.Empty
+            Return string.Empty
         End Try
     End Function
 
@@ -507,15 +507,15 @@ Public Class EIO
         Try
 
             File.WriteAllText(
-                    String.Format("{0}\{1}", FolderPath, "Test.dll"), "Test"
+                    string.Format("{0}\{1}", FolderPath, "Test.dll"), "Test"
                     )
 
             If File.ReadAllText(
-                 String.Format("{0}\{1}", FolderPath, "Test.dll")
+                 string.Format("{0}\{1}", FolderPath, "Test.dll")
                  ) = "Test" Then
 
                 DeleteFileIfExists(
-                     String.Format("{0}\{1}", FolderPath, "Test.dll")
+                     string.Format("{0}\{1}", FolderPath, "Test.dll")
                      )
                 Return True
             End If
@@ -756,7 +756,7 @@ Public Class EIO
     Public Shared Function CopyFileToDir(ByVal src As String, ByVal dstDir As String,
                                          Optional overwrite As Boolean = True) As Boolean
         If Not Directory.Exists(dstDir) Then Directory.CreateDirectory(dstDir)
-        Return CopyFile(src, String.Format("{0}\{1}", dstDir, GetFileName(src)), overwrite)
+        Return CopyFile(src, string.Format("{0}\{1}", dstDir, GetFileName(src)), overwrite)
     End Function
 
 End Class

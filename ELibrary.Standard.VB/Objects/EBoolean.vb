@@ -49,7 +49,7 @@ Namespace Objects
         ''' <remarks></remarks>
         Public Shared Function ValueOf(ByVal obj As String) As Boolean
             Try
-                If obj IsNot Nothing AndAlso obj <> String.Empty Then
+                If obj IsNot Nothing AndAlso obj <> string.Empty Then
                     If EStrings.EqualsIgnoreCase(obj, "yes") OrElse
                         EStrings.EqualsIgnoreCase(obj, "y") Then Return True
                     If EStrings.EqualsIgnoreCase(obj, "no") OrElse

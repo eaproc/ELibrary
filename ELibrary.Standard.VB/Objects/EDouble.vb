@@ -14,7 +14,7 @@
         ''' <remarks></remarks>
         Public Overloads Shared Function ValueOf(ByVal obj As String) As Double
             Try
-                If obj Is Nothing OrElse obj.Trim() = String.Empty Then Return 0
+                If obj Is Nothing OrElse obj.Trim() = string.Empty Then Return 0
                 Return CDbl(obj)
 
             Catch ex As Exception

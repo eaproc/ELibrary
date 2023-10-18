@@ -86,7 +86,7 @@ Namespace AppConfigurations
         Public Function getElementByTagNameValue(pTagName As String) As String
             Dim p = getElementByTagName(pTagName)
             If p IsNot Nothing Then Return p.Value
-            Return String.Empty
+            Return string.Empty
 
         End Function
 

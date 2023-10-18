@@ -41,14 +41,14 @@ Namespace InputsParsing
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Shared Function parseOutDoubleAsString(pVal As String) As String
-            If pVal Is Nothing OrElse pVal = String.Empty Then Return pVal
+            If pVal Is Nothing OrElse pVal = string.Empty Then Return pVal
             Dim pValid As IEnumerable(Of Char) = From dChar As Char In pVal.ToCharArray()
                                                  Where TextParsing.IsNumber(dChar) OrElse
                                                  AscW(dChar) = CInt(COMMA)
                                                  Select dChar
 
             '   Consider Negative Sign
-            Dim pSymbol As String = String.Empty
+            Dim pSymbol As String = string.Empty
             Dim pIndexOfNegative = pVal.IndexOf("-")
             If pIndexOfNegative >= 0 AndAlso pValid.Count() > 0 Then
                 If pVal.IndexOf(pValid.First()) > pIndexOfNegative Then
@@ -59,9 +59,9 @@ Namespace InputsParsing
 
 
             Dim parsedString() As String = New String(pValid.ToArray()).Split(ChrW(COMMA))
-            If parsedString.Length > 1 Then Return String.Format("{3}{0}{1}{2}", parsedString(0), ChrW(COMMA), parsedString(1), pSymbol)
-            If parsedString.Length = 1 Then Return String.Format("{1}{0}", parsedString(0), pSymbol)
-            Return String.Empty
+            If parsedstring.Length > 1 Then Return string.Format("{3}{0}{1}{2}", parsedString(0), ChrW(COMMA), parsedString(1), pSymbol)
+            If parsedstring.Length = 1 Then Return string.Format("{1}{0}", parsedString(0), pSymbol)
+            Return string.Empty
         End Function
 
 

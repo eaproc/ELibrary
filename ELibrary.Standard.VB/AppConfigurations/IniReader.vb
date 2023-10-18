@@ -114,7 +114,7 @@ Namespace AppConfigurations
 
 
             Dim f As String = File.ReadAllText(iniFilePath, encode)
-                If (f.Trim() <> String.Empty) Then
+                If (f.Trim() <> string.Empty) Then
 
                     Me.LoadData(f, KeyVDelimiter, LineVDelimiter, isCaseSensitive, pIdentifySections, New List(Of String)(IgnoreSpecialComments))
 
@@ -212,7 +212,7 @@ Namespace AppConfigurations
 
             If (Not Me.___isCaseSensitive) Then Key = Key.ToLower()
             If (Me.Keys().Contains(Key)) Then Return Me.IniDetails(Key)
-            Return String.Empty
+            Return string.Empty
 
         End Function
 
@@ -243,14 +243,14 @@ Namespace AppConfigurations
 
 
             Dim f As String = iniFileContents
-                If (f.Trim() <> String.Empty) Then
+                If (f.Trim() <> string.Empty) Then
 
                     REM Parse File
                     Dim Lines As String() = f.Split(New String() {LineVDelimiter}, StringSplitOptions.RemoveEmptyEntries)
 
                     If (Lines.Length > 0) Then
 
-                        Dim queries As String = String.Empty
+                        Dim queries As String = string.Empty
                         REM remove comments first
                         For Each Line As String In Lines
 
@@ -273,7 +273,7 @@ Namespace AppConfigurations
 
 
                         '   If KeySections are meant to be identified
-                        Dim vLastKeyIdentified As String = String.Empty
+                        Dim vLastKeyIdentified As String = string.Empty
 
 
                         REM Date.Now process the files using the real delimiter
@@ -287,9 +287,9 @@ Namespace AppConfigurations
 
                             End If
 
-                            Dim vAppendSectionToKeyName As String = String.Empty
+                            Dim vAppendSectionToKeyName As String = string.Empty
 
-                            If vLastKeyIdentified <> String.Empty Then vAppendSectionToKeyName = vLastKeyIdentified & SECTION__NAME___SEPERATOR
+                            If vLastKeyIdentified <> string.Empty Then vAppendSectionToKeyName = vLastKeyIdentified & SECTION__NAME___SEPERATOR
 
 
 

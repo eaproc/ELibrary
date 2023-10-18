@@ -23,7 +23,7 @@ Namespace AppConfigurations
                 Dim f As String = File.ReadAllText(csvFilePath, encode)
 
 
-                If (f.Trim() = String.Empty) Then Return
+                If (f.Trim() = string.Empty) Then Return
 
                 REM Parse File
                 Me.__RawRows = f.Split(New String() {RowDelimiters}, StringSplitOptions.RemoveEmptyEntries).ToList()

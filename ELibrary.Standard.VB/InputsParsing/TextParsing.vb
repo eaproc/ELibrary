@@ -124,7 +124,7 @@ Namespace InputsParsing
 
                 Dim p = New System.Net.Mail.MailAddress(pEmail)
 
-                If p.User = String.Empty Then Return False
+                If p.User = string.Empty Then Return False
                 If p.User.Length < 1 OrElse p.Host.Length < 4 Then Return False
 
                 If pEmail.IndexOf(".@") >= 0 Then Return False
@@ -182,14 +182,14 @@ Namespace InputsParsing
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Shared Function parseOutIntegers(pVal As String) As String
-            If pVal Is Nothing OrElse pVal = String.Empty Then Return String.Empty
+            If pVal Is Nothing OrElse pVal = string.Empty Then Return string.Empty
             Dim pValid As IEnumerable(Of Char) = From dChar As Char In pVal.ToCharArray()
                                                  Where IsNumber(dChar)
                                                  Select dChar
 
 
             '   Consider Negative Sign
-            Dim pSymbol As String = String.Empty
+            Dim pSymbol As String = string.Empty
             Dim pIndexOfNegative = pVal.IndexOf("-")
             If pIndexOfNegative >= 0 AndAlso pValid.Count() > 0 Then
                 If pVal.IndexOf(pValid.First()) > pIndexOfNegative Then
@@ -222,7 +222,7 @@ Namespace InputsParsing
         ''' <returns></returns>
         ''' <remarks></remarks>
         Public Shared Function parseOutDoubleAsString(pVal As String) As String
-            If pVal Is Nothing OrElse pVal = String.Empty Then Return pVal
+            If pVal Is Nothing OrElse pVal = string.Empty Then Return pVal
             Dim pValid As IEnumerable(Of Char) = From dChar As Char In pVal.ToCharArray()
                                                  Where IsNumber(dChar) OrElse
                                                  AscW(dChar) = CInt(DOT)
@@ -231,7 +231,7 @@ Namespace InputsParsing
 
 
             '   Consider Negative Sign
-            Dim pSymbol As String = String.Empty
+            Dim pSymbol As String = string.Empty
             Dim pIndexOfNegative = pVal.IndexOf("-")
             If pIndexOfNegative >= 0 AndAlso pValid.Count() > 0 Then
                 If pVal.IndexOf(pValid.First()) > pIndexOfNegative Then
@@ -244,9 +244,9 @@ Namespace InputsParsing
 
 
             Dim parsedString() As String = New String(pValid.ToArray()).Split("."c)
-            If parsedString.Length > 1 Then Return String.Format("{2}{0}.{1}", parsedString(0), parsedString(1), pSymbol)
-            If parsedString.Length = 1 Then Return String.Format("{1}{0}", parsedString(0), pSymbol)
-            Return String.Empty
+            If parsedstring.Length > 1 Then Return string.Format("{2}{0}.{1}", parsedString(0), parsedString(1), pSymbol)
+            If parsedstring.Length = 1 Then Return string.Format("{1}{0}", parsedString(0), pSymbol)
+            Return string.Empty
         End Function
 
 
