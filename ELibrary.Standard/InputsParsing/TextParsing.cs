@@ -160,7 +160,7 @@ namespace ELibrary.Standard.InputsParsing
                     return false;
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }

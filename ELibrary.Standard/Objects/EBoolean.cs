@@ -35,7 +35,7 @@ namespace ELibrary.Standard.Objects
                     return valueOf(ELong.valueOf(obj));
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
 

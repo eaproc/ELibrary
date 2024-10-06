@@ -37,7 +37,7 @@ namespace ELibrary.Standard
                     {
                         Directory.Delete(subDir, true);
                     }
-                    catch (Exception ex)
+                    catch (Exception )
                     {
                     }
                 }
@@ -51,7 +51,7 @@ namespace ELibrary.Standard
                     {
                         File.Delete(subFile);
                     }
-                    catch (Exception ex)
+                    catch (Exception )
                     {
                     }
                 }
