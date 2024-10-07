@@ -1,140 +1,116 @@
 ﻿using System;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace ELibrary.Standard.Objects
 {
     public class EBoolean
     {
-
         /// <summary>
-        /// Converts An Object to Boolean
+        /// Converts an object to a boolean.
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        /// <remarks></remarks>
+        /// <param name="obj">The object to convert.</param>
+        /// <returns>True if conversion is successful and logical; otherwise, false.</returns>
         public static bool valueOf(object obj)
         {
+            if (obj == null || obj is DBNull)
+                return false;
+
             try
             {
-                if (obj is null)
-                    return false;
-                if (obj is bool)
+                switch (obj)
                 {
-                    return Conversions.ToBoolean(obj);
-                }
-                else if (obj is DBNull)
-                {
-                    return false;
-                }
-                else if (obj is string)
-                {
-                    return valueOf(Conversions.ToString(obj));
-                }
-                else if (obj is short || obj is int || obj is long || obj is double || obj is float || obj is decimal)
-                {
-                    return valueOf(ELong.valueOf(obj));
-                }
-            }
-            catch (Exception)
-            {
-            }
+                    case bool boolValue:
+                        return boolValue;
 
-            return false;
+                    case string stringValue:
+                        return valueOf(stringValue);
+
+                    case short shortValue:
+                        return valueOf(shortValue);
+
+                    case int intValue:
+                        return valueOf((long)intValue);
+
+                    case long longValue:
+                        return valueOf(longValue);
+
+                    case double doubleValue:
+                    case float floatValue:
+                    case decimal decimalValue:
+                        // Cast the numeric types to long for a common boolean conversion
+                        return valueOf(Convert.ToInt64(obj));
+
+                    default:
+                        return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-
         /// <summary>
-        /// Converts Both Integer String to Boolean. Like "123" AND "TRUE" OR "FALSE" 
+        /// Converts a string to a boolean. Handles "true"/"false", "yes"/"no", and numeric strings.
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        /// <remarks></remarks>
+        /// <param name="obj">The string to convert.</param>
+        /// <returns>True if conversion is successful and logical; otherwise, false.</returns>
         public static bool valueOf(string obj)
         {
+            if (string.IsNullOrWhiteSpace(obj))
+                return false;
+
             try
             {
-                if (obj is object && (obj ?? "") != (string.Empty ?? ""))
-                {
-                    if (EStrings.equalsIgnoreCase(obj, "yes") || EStrings.equalsIgnoreCase(obj, "y"))
-                        return true;
-                    if (EStrings.equalsIgnoreCase(obj, "no") || EStrings.equalsIgnoreCase(obj, "n"))
-                        return false;
-                    if (EStrings.equalsIgnoreCase(obj, "true") || EStrings.equalsIgnoreCase(obj, "t"))
-                        return true;
-                    if (EStrings.equalsIgnoreCase(obj, "false") || EStrings.equalsIgnoreCase(obj, "f"))
-                        return false;
-                }
-                // REM Check if it is number else try returning it like True written in string
-                short TryInt;
-                if (short.TryParse(obj, out TryInt))
-                    return valueOf(TryInt);
-                return Conversions.ToBoolean(obj);
+                string lowerObj = obj.Trim().ToLower();
+
+                // Handle common boolean representations
+                if (lowerObj == "yes" || lowerObj == "y" || lowerObj == "true" || lowerObj == "t")
+                    return true;
+
+                if (lowerObj == "no" || lowerObj == "n" || lowerObj == "false" || lowerObj == "f")
+                    return false;
+
+                // Attempt to parse as a numeric value
+                if (short.TryParse(lowerObj, out short numericValue))
+                    return valueOf(numericValue);
+
+                // Fall back to a general boolean conversion if applicable
+                return bool.TryParse(lowerObj, out bool boolValue) && boolValue;
             }
-            catch (Exception ex)
+            catch
             {
                 return false;
             }
         }
 
-
         /// <summary>
-        /// Converts Both Integer String to Boolean. Like "123" AND "TRUE" OR "FALSE" 
+        /// Converts a short to a boolean. A value of 0 is false, any other value is true.
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        /// <remarks></remarks>
+        /// <param name="obj">The short to convert.</param>
+        /// <returns>True if obj is non-zero; otherwise, false.</returns>
         public static bool valueOf(short obj)
         {
-            try
-            {
-                // REM Check if it is number else try returning it like True written in string
-
-                return Conversions.ToBoolean(Math.Abs(obj));
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
+            return obj != 0;
         }
 
         /// <summary>
-        /// Converts Both Integer String to Boolean. Like "123" AND "TRUE" OR "FASLSE" 
+        /// Converts a long to a boolean. A value of 0 is false, any other value is true.
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        /// <remarks></remarks>
+        /// <param name="obj">The long to convert.</param>
+        /// <returns>True if obj is non-zero; otherwise, false.</returns>
         public static bool valueOf(long obj)
         {
-            try
-            {
-                // REM Check if it is number else try returning it like True written in string
-
-                return Conversions.ToBoolean(Math.Abs(obj));
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
+            return obj != 0;
         }
 
-
-
         /// <summary>
-        /// Converts A  Boolean to Boolean
+        /// Returns the boolean value directly.
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        /// <remarks></remarks>
+        /// <param name="obj">The boolean to return.</param>
+        /// <returns>The same boolean value passed in.</returns>
         public static bool valueOf(bool obj)
         {
-            try
-            {
-                return obj;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
+            return obj;
         }
     }
 }

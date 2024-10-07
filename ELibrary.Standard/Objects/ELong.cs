@@ -1,153 +1,138 @@
 ﻿using System;
 using System.Drawing;
-using Microsoft.VisualBasic;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace ELibrary.Standard.Objects
 {
     public class ELong
     {
-
         /// <summary>
-        /// Converts An Object to long
+        /// Converts a string to a long.
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        /// <remarks></remarks>
+        /// <param name="obj">The string to convert.</param>
+        /// <returns>The long value of the string or 0 if conversion fails.</returns>
         public static long valueOf(string obj)
         {
+            if (string.IsNullOrWhiteSpace(obj))
+                return 0L;
+
             try
             {
-                if (string.IsNullOrEmpty(obj))
-                    return 0L;
-                if (string.IsNullOrEmpty(obj.Trim()))
-                    return 0L;
-                return Conversions.ToLong(obj);
+                return Convert.ToInt64(obj.Trim());
             }
-            catch (Exception ex)
+            catch
             {
                 return 0L;
             }
         }
 
-
         /// <summary>
-        /// Converts An Object to long
+        /// Converts a DBNull to a long (always 0).
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        /// <remarks></remarks>
         public static long valueOf(DBNull obj)
         {
-            try
-            {
-                return 0L;
-            }
-            catch (Exception ex)
-            {
-                return 0L;
-            }
+            return 0L;
         }
 
         /// <summary>
-        /// Converts An Object to long
+        /// Converts a double to a long by rounding.
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        /// <remarks></remarks>
         public static long valueOf(double obj)
         {
-            try
-            {
-                return (long)Math.Round(obj);
-            }
-            catch (Exception ex)
-            {
-                return 0L;
-            }
+            return (long)Math.Round(obj);
         }
-
 
         /// <summary>
-        /// Converts An Object to long
+        /// Converts a decimal to a long by rounding.
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        /// <remarks></remarks>
         public static long valueOf(decimal obj)
         {
-            try
-            {
-                return (long)Math.Round(obj);
-            }
-            catch (Exception ex)
-            {
-                return 0L;
-            }
+            return (long)Math.Round(obj);
         }
 
+        /// <summary>
+        /// Converts a boolean to a long (true = 1, false = 0).
+        /// </summary>
         public static long valueOf(bool obj)
         {
-            try
-            {
-                return Math.Abs(Conversions.ToLong(obj));
-            }
-            catch (Exception ex)
-            {
-                return 0L;
-            }
+            return obj ? 1L : 0L;
         }
 
+        /// <summary>
+        /// Converts a Color to a long based on its ARGB value.
+        /// </summary>
         public static long valueOf(Color obj)
         {
-            try
-            {
-                return obj.ToArgb();
-            }
-            catch (Exception ex)
-            {
-                return 0L;
-            }
+            return obj.ToArgb();
         }
 
+        /// <summary>
+        /// Converts a short to a long.
+        /// </summary>
         public static long valueOf(short obj)
         {
             return obj;
         }
 
+        /// <summary>
+        /// Converts an int to a long.
+        /// </summary>
         public static long valueOf(int obj)
         {
             return obj;
         }
 
+        /// <summary>
+        /// Returns the long value directly.
+        /// </summary>
         public static long valueOf(long obj)
         {
             return obj;
         }
 
+        /// <summary>
+        /// Converts an object to a long by determining its type.
+        /// </summary>
         public static long valueOf(object obj)
         {
-            if (obj is null)
+            if (obj == null || obj is DBNull)
                 return 0L;
-            if (obj is string)
-                return valueOf(Conversions.ToString(obj));
-            if (obj is DBNull)
+
+            try
+            {
+                switch (obj)
+                {
+                    case string strValue:
+                        return valueOf(strValue);
+
+                    case double doubleValue:
+                        return valueOf(doubleValue);
+
+                    case decimal decimalValue:
+                        return valueOf(decimalValue);
+
+                    case int intValue:
+                        return intValue;
+
+                    case long longValue:
+                        return longValue;
+
+                    case short shortValue:
+                        return shortValue;
+
+                    case bool boolValue:
+                        return valueOf(boolValue);
+
+                    case Color colorValue:
+                        return valueOf(colorValue);
+
+                    default:
+                        return 0L; // Unconvertible type
+                }
+            }
+            catch
+            {
                 return 0L;
-            if (obj is double)
-                return valueOf(Conversions.ToDouble(obj));
-            if (obj is long)
-                return Conversions.ToLong(obj);
-            if (obj is int)
-                return valueOf(Conversions.ToInteger(obj));
-            if (obj is decimal)
-                return valueOf(Conversions.ToDecimal(obj));
-            if (obj is short)
-                return valueOf(Conversions.ToShort(obj));
-            if (obj is bool)
-                return valueOf(Conversions.ToBoolean(obj));
-            if (obj is Color)
-                return valueOf((Color)obj);
-            return 0L;    // REM Cant convert this
+            }
         }
     }
 }
